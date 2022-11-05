@@ -1,16 +1,24 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+board = ["-", "-", "-",
+         "-", "-", "-",
+         "-", "-", "-"]
+currenPlayer = "x"
+winner = None
+gameRunning = True
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+def printBoard(board):
+    print(board[0] + " | " + board[1] + " | " + board[2])
+    print("---------")
+    print(board[3] + " | " + board[4] + " | " + board[5])
+    print("---------")
+    print(board[6] + " | " + board[7] + " | " + board[8])
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+def playerInput(board):
+    playerInput = int (input("Enter  a number 1-9"))
+    if 1 <= playerInput <= 9 and board[playerInput - 1] == "-":
+        board[playerInput-1] = currenPlayer
+    else:
+        print("NOPE You cant")
+
+
+printBoard(board)
