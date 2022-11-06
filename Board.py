@@ -15,16 +15,17 @@ class Board:
         print(self.board[6] + " | " + self.board[7] + " | " + self.board[8])
 
     def playerInput(self):
+        invalid = True
         playerInput = int(input("Enter  a number 1-9"))
-        validInput = False
-        while validInput:
+        while invalid:
             if 1 <= playerInput <= 9 and self.board[playerInput - 1] == "-":
                 self.board[playerInput - 1] = self.currenPlayer
                 self.changePlayer()
-                validInput = True
+                invalid = False
                 break
             else:
                 print("NOPE You cant")
+                playerInput = int(input("Enter  a number 1-9"))
 
     def changePlayer(self):
         if self.currenPlayer.__eq__("x"):
