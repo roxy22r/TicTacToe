@@ -23,4 +23,4 @@ class Board:
         return self.board
 
     def isFieldFree(self, pos: int) -> bool:
-        return self.board[pos - 1] == "-"
+        return self.board[pos - 1].__eq__("-")

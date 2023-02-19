@@ -3,4 +3,4 @@ from Board import Board
 
 controller = Controller()
 board = Board()
-controller.gameStarter(board)
+controller.play()
