@@ -68,4 +68,13 @@ class TestRule(TestCase):
         result = self.rule.isWinning(self.board, self.player)
         self.assertTrue(result)
 
-
+    def test_isWinning_playerXSignSetDiagonalExceptLast_false(self):
+        self.playerX = Player("X")
+        self.playerO = Player("X")
+        self.board = Board()
+        self.board.setSign(1, self.playerX)
+        self.board.setSign(5, self.playerX)
+        self.board.setSign(9, self.playerO)
+        self.rule = Rule()
+        result = self.rule.isWinning(self.board, self.playerX)
+        self.assertTrue(result)
