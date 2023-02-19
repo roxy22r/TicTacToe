@@ -23,6 +23,7 @@ class Controller:
             return self.playerX
 
     def gameStarter(self, boardTicTacToe: Board):
+        rule = self.rule
         board = boardTicTacToe.getBoard()
         currentPlayer = self.playerX
         while self.gameRunning:
@@ -30,19 +31,15 @@ class Controller:
             playerInput = int(input("Enter  a number 1-9"))
             if self.validInput(playerInput, board):
                 boardTicTacToe.setSign(playerInput, currentPlayer)
-                if self.isWinner(boardTicTacToe, currentPlayer):
-                    self.createWinnerText(currentPlayer)
-                    self.gameRunning = False
-                    break
-                else:
-                    currentPlayer = self.changePlayer(currentPlayer)
+                self.showWinningWhenWon(boardTicTacToe, currentPlayer)
+                currentPlayer = self.changePlayer(currentPlayer)
             else:
                 print("NOPE You cant")
 
-    def isWinner(self, board: Board, currentPlayer: Player):
-        rule = self.rule
-        return rule.horizontal(board, currentPlayer) or rule.vertical(board, currentPlayer) or rule.diagonal(board, currentPlayer)
-
+    def showWinningWhenWon(self, boardTicTacToe: Board, currentPlayer: Player):
+        if self.rule.isWinning(boardTicTacToe, currentPlayer):
+            self.createWinnerText(currentPlayer)
+            self.gameRunning = False
 
     def createWinnerText(self, currentPlayer: Player):
         print(currentPlayer.getSign(), "has won ")
